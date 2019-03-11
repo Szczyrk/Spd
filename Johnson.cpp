@@ -124,9 +124,9 @@ cout<<endl;
 for(int p=L2.size()-1;p>=0;p--)
 {
     cout<< L2[p].r<<" "<<L2[p].p<<" "<<L2[p].q<<" "<<p<<" "<<o<<" "<<L2[p].sumPQ<<endl;
-    tablica[o][0]=L1[p].r;
-    tablica[o][1]=L1[p].p;
-    tablica[o++][2]=L1[p].q;
+    tablica[o][0]=L2[p].r;
+    tablica[o][1]=L2[p].p;
+    tablica[o++][2]=L2[p].q;
 }
 	/*wyliczanie c*/
 	int C=0;
