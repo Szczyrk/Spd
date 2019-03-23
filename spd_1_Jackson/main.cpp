@@ -43,12 +43,15 @@ int main()
             tab[j+1] = tab[j];
         tab[j+1] = tmp;
     }
-
+cout<<endl;
+cout<<"PI: ";
     for (int i = 0; i < n; i++){
+            cout<<tab[i].nr<<",";
 	t = max(t,tab[i].r) + tab[i].p;
 	sum = max(sum, t + tab[i].q);
         //cout << "nr tab: " << tab[i].nr << " moment dostepnosci " << tab[i].r << " czas wykonywania " << tab[i].p << " czas wykonania " << tab[i].q << endl;
     }
+    cout<<endl;
     cout << sum << endl;
     return 0;
 }
