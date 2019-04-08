@@ -1,19 +1,16 @@
 #include <cstdlib>
 #include <iostream>
 #include <climits>
-
-#include "Schrage.h"
+#include <string>
+#include "Carlier.h"
 
 using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
-    Schrage sh;
-    sh.wczytaj(argv[1]);
-    cout << "Cmax" << sh.carlier(INT_MAX) << endl;
 
+int main(int argc, char** argv) {
+    Carlier carlier;
+    carlier.wczytaj(argv[1]);
+    cout << "Cmax" << carlier.algorithm(INT_MAX) << endl;
     return 0;
 }
 

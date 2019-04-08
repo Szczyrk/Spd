@@ -1,6 +1,6 @@
-carlier: main.o Schrage.o
-	g++ main.o Schrage.o -o carlier
-Schrage.o: Schrage.cpp Schrage.h
-	g++ -c Schrage.cpp Schrage.h
-main.o: main.cpp Schrage.h
-	g++ -c main.cpp Schrage.h
+carlier: main.o Carlier.o
+	g++ main.o Carlier.o -o carlier
+Carlier.o: Carlier.cpp Carlier.h
+	g++ -c Carlier.cpp Carlier.h
+main.o: main.cpp Carlier.h
+	g++ -c main.cpp Carlier.h
