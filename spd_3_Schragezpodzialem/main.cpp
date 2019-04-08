@@ -44,6 +44,7 @@ int main() {
     fstream plik;
     int n = -1; // liczba zadan
     zadanie *wsk = NULL;
+    int index =0;
 
     cout << "Podaj nazwe pliku" << endl;
     cin >> nazwapliku;
@@ -55,6 +56,7 @@ int main() {
     plik >> n;
     cout << "ilosc zadan:" << n << endl;
     zadanie tab[n];
+    int pi[n];
     for (int i = 0; i < n; i++) {
         wsk = new zadanie;
         tab[i].nr = i;
@@ -116,12 +118,18 @@ int main() {
                 licznik ++;
             }
         }
+        pi[index++] = temp1.nr;
         c=c+temp1.pi;
         e = c + temp1.qi; //czas realizacji to moment dostepnosci maszyn + czas dostarczenia ostatniego
         if (d<e) d=e; //przypisuje o ile bedzie dluzej trwalo
 
     }
-
+    cout << endl;
+    cout << "PI :" << endl;
+    for(int x =0;x<n;x++)
+        cout<<pi[x]<<",";
+    cout << endl;
+    cout << endl;
     cout << d << endl;
     return 0;
 }
