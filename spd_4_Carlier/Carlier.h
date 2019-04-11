@@ -28,7 +28,7 @@ private:
     void sortuj_r();
     void dodaj_q(int*);
     void sortuj();
-    int zadanie_interferencyjne(int, int);
+    int zadanie_interferencyjne(int min_K, int max_K);
     int max_K(int);
     int min_K(int, int);
     void uzupelnij_optymalne();

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int nr_zadania = 0, r=1, p=2, q=3, out=4;
+const int nr_zadania = 0, r=1, p=2, q=3, out=4;
 
 Carlier::Carlier() {
 }
@@ -78,31 +78,30 @@ int Carlier::zadanie_interferencyjne(int min_K, int max_K) {
 }
 
 int Carlier::algorithm(int gorne_ogr) {
-    int zadanie_c, poczatek_K, koniec_K, dolne_ogr = 0;
+    int zadanie_interferencyjne, poczatek_K, koniec_K, dolne_ogr = 0;
     int gorne_ogr_tmp = -1, r_pamiec, q_pamiec;
-    int r_pi = INT_MAX,q_pi = INT_MAX, p_pi = 0;
-    vector<int*> tmp;
+    int r_pi = INT_MAX, q_pi = INT_MAX, p_pi = 0;
+    vector<int*> permutacja_tmp;
     Carlier::shrage();
     if (Cmax_Schrage < gorne_ogr) {
         gorne_ogr = Cmax_Schrage;
     }
     koniec_K = Carlier::max_K(Cmax_Schrage);	//b
     poczatek_K = Carlier::min_K(koniec_K, Cmax_Schrage); //a
-    zadanie_c = Carlier::zadanie_interferencyjne(poczatek_K, koniec_K); // c
-    //cout<<"a:"<<poczatek_K+1<<" b:"<<koniec_K+1<<" c:"<<zadanie_c+1<<endl;
+    zadanie_interferencyjne = Carlier::zadanie_interferencyjne(poczatek_K, koniec_K); // c
     
-    if (zadanie_c == -1) {//nie znalazl zadania c tzn Schrage optymalny
+    if (zadanie_interferencyjne == -1) {//nie znalazl zadania c tzn Schrage optymalny
         return gorne_ogr;
     }
-    for (int i = zadanie_c + 1; i <= koniec_K; i++) {
+    for (int i = zadanie_interferencyjne + 1; i <= koniec_K; i++) {
         r_pi = min(r_pi, permutacja[i][r]);
         p_pi += permutacja[i][p];
         q_pi = min(q_pi, permutacja[i][q]);
     }
     // zwiekszamy r
-    r_pamiec = permutacja[zadanie_c][r];
-    tmp = permutacja;
-    permutacja[zadanie_c][r] = max(permutacja[zadanie_c][r], r_pi + p_pi);
+    r_pamiec = permutacja[zadanie_interferencyjne][r];
+    permutacja_tmp = permutacja;
+    permutacja[zadanie_interferencyjne][r] = max(permutacja[zadanie_interferencyjne][r], r_pi + p_pi);
     Carlier::sortuj();
     Carlier::shrage_podzial();
     dolne_ogr = Cmax_Scharage_podzial;
@@ -112,12 +111,12 @@ int Carlier::algorithm(int gorne_ogr) {
         if (gorne_ogr_tmp != -1 && gorne_ogr_tmp < gorne_ogr) 
             gorne_ogr = gorne_ogr_tmp;
     }
-    permutacja = tmp;
-    permutacja[zadanie_c][r] = r_pamiec;
+    permutacja = permutacja_tmp;
+    permutacja[zadanie_interferencyjne][r] = r_pamiec;
 
     // zwiekszamy q    
-    q_pamiec = permutacja[zadanie_c][q];
-    permutacja[zadanie_c][q] = max(permutacja[zadanie_c][q],q_pi + p_pi);
+    q_pamiec = permutacja[zadanie_interferencyjne][q];
+    permutacja[zadanie_interferencyjne][q] = max(permutacja[zadanie_interferencyjne][q],q_pi + p_pi);
     Carlier::sortuj();
     Carlier::shrage_podzial();
     dolne_ogr = Cmax_Scharage_podzial;
@@ -127,7 +126,7 @@ int Carlier::algorithm(int gorne_ogr) {
         if (gorne_ogr_tmp != -1 && gorne_ogr_tmp < gorne_ogr)
             gorne_ogr = gorne_ogr_tmp;
     }
-    permutacja[zadanie_c][q] = q_pamiec;
+    permutacja[zadanie_interferencyjne][q] = q_pamiec;
     
     return gorne_ogr;
 }

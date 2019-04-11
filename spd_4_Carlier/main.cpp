@@ -10,6 +10,7 @@ using namespace std;
 int main(int argc, char** argv) {
     Carlier carlier;
     carlier.wczytaj(argv[1]);
+    int sum=0;
     cout << "Cmax" << carlier.algorithm(INT_MAX) << endl;
     return 0;
 }
