@@ -30,9 +30,11 @@ int main(int argc, char ** argv)
 
         in >> liczba_zadan;
         long int **zadania = new long int * [liczba_zadan]; // Tablica na dane zadan
+        int *kolejnosc = new int [liczba_zadan]; // Tablica na dane zadan
+
         for (int j = 0; j < liczba_zadan; j++)
         {
-         zadania[j] = new long int[3];
+         zadania[j] = new long int[4];
         }
 
         long int **adresy = new long int * [liczba_zadan + 1]; // Tablica na adresy
@@ -49,7 +51,8 @@ int main(int argc, char ** argv)
             {
                 in >> zadania[i][j];
             }
-        }
+            zadania[i][3] = i;
+            }
 
 
         permutacje = pow(2,liczba_zadan);			// Wyliczenie liczby permutacji = 2^N
@@ -67,6 +70,9 @@ int main(int argc, char ** argv)
         adresy[0][0] = 1;
         adresy[0][1] = permutacje-1;
         adresy[liczba_zadan][0] = MAX;
+
+
+        cout << permutacje << endl;
 
         for(int i = 1; i <= permutacje; i++)
         {
@@ -104,6 +110,7 @@ int main(int argc, char ** argv)
         }
         cout << obliczenia[permutacje][0] << "\n";
         min = permutacje;
+
     in.close();
 
     for (int j = 0; j < liczba_zadan; j++)
